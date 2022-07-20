@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang }}" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/ dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/ og: http://ogp.me/ns# rdfs: http://www.w3.org/2000/01/rdf-schema# sioc: http://rdfs.org/sioc/ns# sioct: http://rdfs.org/sioc/types# skos: http://www.w3.org/2004/02/skos/core# xsd: http://www.w3.org/2001/XMLSchema#">
+  <head>
+    <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="https://reimagined.library.mcgill.ca/sites/default/files/favicon.ico" type="image/vnd.microsoft.icon" />
+    <title>{% if page.url != "/" %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <link type="text/css" rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}" media="all">
+    <!-- HTML5 element support for IE6-8 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="{{ "/assets/js/scripts.js" | relative_url }}"></script>
+  </head>
+  <body class="navbar-is-fixed-top html not-front not-logged-in no-sidebars page-node page-node- i18n-{{ page.lang }}">
+    <div id="skip-link">
+      <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+    </div>
+    <header id="navbar" role="banner" class="navbar navbar-fixed-top navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="logo navbar-btn pull-left" href="{{ "/" | relative_url }}{% if page.lang == "fr" %}fr/{% endif %}" title="Home">
+          <img src="https://reimagined.library.mcgill.ca/sites/default/files/McG_FIAT-LUX_cmyk_red_hor_{% if page.lang == "en" %}eng_web{% else %}fre_sm{% endif %}.png" alt="Home" />
+          </a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-collapse">
+          <nav role="navigation">
+            <ul class="menu nav navbar-nav">
+              {% for item in site.data.nav %}
+                {% assign this_title = item["title"][page.lang] %}
+                {% assign this_url = item["url"][page.lang] %}
+                <li class="{% if forloop.first %}first {% elsif forloop.last %}last {% endif %}leaf{% if page.url == this_url %} active-trail active{% endif %}">
+                  <a href="{% if this_url contains "https://" %}{{ this_url }}{% else %}{{ this_url | relative_url }}{% endif %}"{% if page.url == this_url %} class="active-trail active"{% endif %}>{{ this_title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="main-container container-fluid">
+      <header role="banner" id="page-header">
+      </header>
+      <!-- /#page-header -->
+      <div class="row">
+        <section class="col-sm-12">
+          <div class="highlighted jumbotron">
+            <div class="region region-highlighted">
+              <section id="block-locale-language" class="block block-locale clearfix">
+                <ul class="language-switcher-locale-url">
+                  {% for item in site.data.nav %}
+                    {% if page.url == item["url"]["en"] or page.url == item["url"]["fr"] %}
+                      <li class="en first{% if page.url == item["url"]["en"] %} active{% endif %}"><a href="{{ item["url"]["en"] | relative_url }}" class="language-link{% if page.url == item["url"]["en"] %} active{% endif %}" xml:lang="en" title="{{ item["title"]["en"] }}">English</a></li>
+                      <li class="fr last{% if page.url == item["url"]["fr"] %} active{% endif %}"><a href="{{ item["url"]["fr"] | relative_url }}" class="language-link{% if page.url == item["url"]["fr"] %} active{% endif %}" xml:lang="fr" title="{{ item["title"]["fr"] }}">Français</a></li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </section>
+            </div>
+          </div>
+          <a id="main-content"></a>
+          <h1 class="page-header">{{ page.title }}</h1>
+          <div class="region region-content">
+            <section id="block-system-main" class="block block-system clearfix">
+              <article class="node node-page clearfix" about="{{ page.url | relative_url }}" typeof="foaf:Document">
+                <header>
+                  <span property="dc:title" content="{{ page.title }}" class="rdf-meta element-hidden"></span>
+                  <span property="sioc:num_replies" content="0" datatype="xsd:integer" class="rdf-meta element-hidden"></span>      
+                </header>
+                <div class="field field-name-body field-type-text-with-summary field-label-hidden">
+                  <div class="field-items">
+                    <div class="field-item even" property="content:encoded">
+                      {{ content }}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </section>
+          </div>
+        </section>
+      </div>
+    </div>
+    <footer class="footer container-fluid">
+      <div class="region region-footer">
+        <section id="block-block-4" class="block block-block clearfix"></section>
+      </div>
+    </footer>
+  </body>
+</html>

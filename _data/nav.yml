@@ -1,0 +1,48 @@
+- title:
+    en: Home
+    fr: Accueil
+  url:
+    en: /
+    fr: /fr/
+- title:
+    en: About the project
+    fr: À propos
+  url:
+    en: /about/
+    fr: /fr/a-propos/
+- title:
+    en: Feedback
+    fr: Consultation
+  url:
+    en: /feedback/
+    fr: /fr/consultation-de-la-communaute/
+- title:
+    en: News
+    fr: Nouvelles
+  url:
+    en: /news/
+    fr: /fr/nouvelles/
+- title:
+    en: Team
+    fr: Équipe
+  url:
+    en: /team/
+    fr: /fr/equipe/
+- title:
+    en: Collection Facility
+    fr: Pavillon abritant la collection
+  url:
+    en: https://www.mcgill.ca/library/about/collections-management-facility
+    fr: https://www.mcgill.ca/library/about/collections-management-facility
+- title:
+    en: Giving
+    fr: Philanthropie
+  url:
+    en: https://www.alumni.mcgill.ca/give/?new=1&allocations=06949
+    fr: https://www.alumni.mcgill.ca/give/index.php?formlang=F
+- title:
+    en: Contact us
+    fr: Commentaires
+  url:
+    en: /contact-us/
+    fr: /fr/commentaires/
