@@ -1,0 +1,20 @@
+title: "The McGill Library Reimagined - Fiat Lux: Let there be light"
+
+baseurl: /reimagined
+
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+
+exclude:
+  - 'Gemfile'
+  - 'Gemfile.lock'
+  - 'README.md'
+  - 'R'
+
+theme: null
+# https://github.com/github/pages-gem/issues/657
+# https://github.com/github/pages-gem/issues/613

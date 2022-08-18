@@ -1,0 +1,101 @@
+<html lang="{{ page.lang }}" class="hydrated">
+  <head>
+    <meta charset="utf-8">
+    <style data-styles="">ion-icon{visibility:hidden}.hydrated{visibility:inherit}</style>
+    <title>{% if page.url != "/" %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="shortcut icon" href="https://reimagined.library.mcgill.ca/sites/default/files/favicon.ico" type="image/vnd.microsoft.icon" />
+    <link type="text/css" rel="stylesheet" href="{{ "/assets/css/mds.css" | relative_url }}" media="all">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <div class="mds-l-box--standard">
+          <!-- Header component. -->
+          <!-- Header section, semantic container for logo, navigation etc. -->
+          <header class="mds-header mds-header--huge " data-testid="mds-header">
+            <!-- Contains header content for styling per device size etc. -->
+            <div class="mds-header__content">
+              <!-- Site logo, name link and slogan. -->
+              <div class="mds-header__branding">
+                <div class="mds-header__site_name_and_slogan">
+                  <a class="mds-link " href="{{ "/" | relative_url }}{% if page.lang == "fr" %}fr/{% endif %}">
+                    <h1 class="mds-header__name">{% if page.lang == "en" %}Fiat Lux Library Project{% else %}Projet de la bibliothèque Fiat Lux{% endif %}</h1>
+                  </a>
+                </div>
+                <!-- This has to come after main header in source order for a11y reasons. It is changed in CSS to be 1st in visual order. -->
+                <div class="mds-header__logo">
+                  <a class="mds-link " href="{{ "/" | relative_url }}{% if page.lang == "fr" %}fr/{% endif %}">
+                  <img src="{{ "/assets/svgs/logo.svg" | relative_url }}" alt="McGill University logo." class=" mds-logo--md">
+                  </a>
+                </div>
+              </div>
+              <!-- Wrapper for header primary navigation and other nav. items. -->
+              <div class="mds-header__nav-wrapper">
+                <section aria-label="Page Tools navigation" class="mds-nav
+                  mds-nav--drop-down
+                  ">
+                  <ul class="mds-nav__list mds-l-flex-row">
+                    <li class="mds-nav__item ">
+                      {% for item in site.data.nav %}
+                        {% if page.url == item["url"]["en"] or page.url == item["url"]["fr"] %}
+                          {% if page.lang == "en" %}
+                            <a class="mds-nav__link mds-button " href="{{ item["url"]["fr"] | relative_url }}">FR</a>
+                          {% else %}
+                            <a class="mds-nav__link mds-button " href="{{ item["url"]["en"] | relative_url }}">EN</a>
+                          {% endif %}
+                        {% endif %}
+                      {% endfor %}
+                    </li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+            <nav aria-label="primary " class="mds-nav mds-nav--primary mds-nav--drop-down">
+              <ul class="mds-nav__list mds-l-flex-row">
+                {% for item in site.data.nav %}
+                  {% assign this_title = item["title"][page.lang] %}
+                  {% assign this_url = item["url"][page.lang] %}
+                  <li class="mds-nav__item ">
+                    <a class="mds-nav__link{% if page.url == this_url %} mds-nav__link--selected{% endif %}" href="{% if this_url contains "https://" %}{{ this_url }}{% else %}{{ this_url | relative_url }}{% endif %}">{{ this_title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </nav>
+          </header>
+        </div>
+        <div>{{ content }}</div>
+        <!-- Footer component. -->
+        <footer data-testid="mds-footer" class="mds-footer mds-dark" role="contentinfo">
+          <div class="mds-footer__wrapper">
+            <img src="{{ "/assets/svgs/logo--inverted.svg" | relative_url }}" alt="" class=" mds-logo--sm">
+            <div class="mds-footer__body mds-copy--muted">Copyright ©  2022 McGill University. All rights reserved</div>
+            <section aria-label="Footer Nav navigation" class="mds-nav
+              mds-nav--drop-down
+              ">
+              <ul class="mds-nav__list mds-l-flex-row">
+                <li class="mds-nav__item ">
+                  <a class="mds-nav__link  " href="/a11y">
+                  Accessibility
+                  </a>
+                </li>
+                <li class="mds-nav__item ">
+                  <a class="mds-nav__link  " href="/privacy">
+                  Privacy notice
+                  </a>
+                </li>
+                <li class="mds-nav__item ">
+                  <a class="mds-nav__link  " href="/contact">
+                  Contact us
+                  </a>
+                </li>
+              </ul>
+            </section>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
